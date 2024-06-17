@@ -39,7 +39,7 @@ function flutter-start() {
         "matchmaking")
             case $2 in
                 "dev")
-                    flutter-watch -d chrome --web-hostname localhost --web-port 8000 --dart-define=API_URL=https://matchmaking-api-hml.fastdezine.com ;;
+                    flutter-watch -d chrome --web-hostname localhost --web-port 8000 --dart-define=API_URL=API_URL ;;
                 "prd")
                     flutter-watch -d chrome --web-hostname localhost --web-port 8000 --dart-define=API_URL=API_URL ;;
                 *)
@@ -48,6 +48,17 @@ function flutter-start() {
             ;;
         *)
             flutter-watch $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 ;;
+    esac
+}
+
+function connect() {
+    case $1 in
+        "matchmaking")
+            sudo ssh -i ~/Documents/Fastdezine/matchmaking.pem ubuntu@35.169.254.176 ;;
+        "ubuntu-server")
+            sudo ssh -i ~/projects/ubuntu-server/ubuntu-server_leomarques.pem leomarques@20.121.112.9 ;;
+        *)
+            echo "Invalid server" ;;
     esac
 }
 ```
